@@ -4,483 +4,94 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./common/css/common.css">
   <style>
-    body {width: 90%; margin: 100px auto;}
-    h1 {margin-bottom: 80px;}
-    .box {margin-bottom: 40px; padding: 0 0 40px 20px; border-bottom: 2px solid #222;}
-    .box:last-of-type {border: 0;}
-    .box button {width: 80px; height: 40px; background: lightgreen;}
-    .tit {font-size: 20px; margin-bottom: 30px;}
-    .con {position: relative; width: 200px; height: 80px; background: lightblue; display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap; cursor: pointer;}
-    .con1, .con2, .con7, .con11, .con12 {cursor: auto;} 
-    .con p {display: inline-block; background: lightyellow; padding: 10px 30px;}
-    .con-1 {position: relative; width: 200px; height: 50px; background: lightgray; display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    .con-1 input, select {border: 1px solid #555; width: 90%; padding: 0 5px;}
-    .con26-1, .con27-1, .con31-1 {background: salmon; padding: 5px 10px; margin-left: 10px; display: none;}
-    .con32-1, .con33-1, .con35-1 {position: absolute; top: 15px; right: -50px; padding: 5px 10px; background: blue; display: none; color: #fff; text-align: center;}
-    .con34-1 {position: absolute; top: 15px; right: 0; padding: 5px 10px; background: blue; color: #fff; text-align: center; z-index: 5;}
-    .in-p, .in-p2 {display: inline-flex; background: salmon; padding: 5px 10px;}
-    .con45, .con46 {border: 5px solid lightseagreen;}
+    :root {
+      --color: olive;
+      --width: 100%;
+    }
+    .banner {position: relative; width: 1340px;}
+    .banner .banner-inner {position: relative; width: 1340px; height: 680px; overflow: hidden;}
+    .banner .banner-inner .img {position: absolute; top: 0; left: 0;}
+    .banner .banner-inner .img span {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 120px; color: yellow;}
+    .banner .btn-box {position: absolute; top: 50%; left: 0; width: var(--width);}
+    .banner .btn-box a {position: absolute; top: 0; font-size: 40px; text-decoration: none; color: pink; z-index: 2;}
+    .banner .btn-box a:nth-child(2) {right: 0;}
   </style>
-  <title>jQuery API - Event</title>
+  <!-- 
+    Mission
+    1. script이용하여 1, 2, 3번 이미지를 배치시키세요.
+    2. 좌, 우 버튼이 잘 작동하게 코딩하세요.
+    3. 좌, 우 버튼을 이용하여 처음이나 끝에 도달하면 loop 시켜주세요.
+    4. gsap를 이용한 모션구현
+   -->
+  <title>Document</title>
 </head>
 <body>
-  <h1>jQuery API - Event</h1>
-  <div class="box">
-    <p class="tit"><b>01.</b> mouseenter / mouseleave</p>
-    <div class="con con1">
-      <p>mouse</p>
-      <span>0</span>
+  <div class="banner">
+    <div class="banner-inner">
+      <div class="img"><span>1</span><img src="common/image/img-star-avenue-k-wave1.jpg" alt=""></div>
+      <div class="img"><span>2</span><img src="common/image/img-star-avenue-k-wave2.jpg" alt=""></div>
+      <div class="img"><span>3</span><img src="common/image/img-star-avenue-k-wave3.jpg" alt=""></div>
+      <div class="img"><span>1</span><img src="common/image/img-star-avenue-k-wave1.jpg" alt=""></div>
+      <div class="img"><span>2</span><img src="common/image/img-star-avenue-k-wave2.jpg" alt=""></div>
+      <div class="img"><span>3</span><img src="common/image/img-star-avenue-k-wave3.jpg" alt=""></div>
+      <div class="img"><span>1</span><img src="common/image/img-star-avenue-k-wave1.jpg" alt=""></div>
+      <div class="img"><span>2</span><img src="common/image/img-star-avenue-k-wave2.jpg" alt=""></div>
+      <div class="img"><span>3</span><img src="common/image/img-star-avenue-k-wave3.jpg" alt=""></div>
+      <div class="img"><span>1</span><img src="common/image/img-star-avenue-k-wave1.jpg" alt=""></div>
+      <div class="img"><span>2</span><img src="common/image/img-star-avenue-k-wave2.jpg" alt=""></div>
+      <div class="img"><span>3</span><img src="common/image/img-star-avenue-k-wave3.jpg" alt=""></div>
+    </div>
+    <div class="btn-box">
+      <a class="btn-left" href="javascript:">◀</a>
+      <a class="btn-right" href="javascript:">▶</a>
     </div>
   </div>
-  <div class="box">
-    <p class="tit"><b>02.</b> mouseover / mouseout</p>
-    <div class="con con2">
-      <p>mouse</p>
-      <span>0</span>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>03.</b> click / dbclick</p>
-    <div class="con con3">click</div>
-    <div class="con con4">dblclick</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>04.</b> mouseup / mousedown / mousemove</p>
-    <div class="con con5">mouseup</div>
-    <div class="con con6">mousedown</div>
-    <div class="con con7">
-      <span>mousemove</span>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>05.</b> keyup / keydown</p>
-    <div class="con-1 con8">
-      <input type="text" placeholder="keyup">
-    </div>
-    <div class="con-1 con9">
-      <input type="text" placeholder="keydown">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>06.</b> blur</p>
-    <div class="con-1 con10">
-      <input type="text" placeholder="blur">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>07.</b> change</p>
-    <div class="con-1 con11">
-      <input type="text" placeholder="change">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>08.</b> resize</p>
-    <div class="con con11">창 크기를 조절해보세요</div>
-    <button class="reset">reset</button>
-  </div>
-  <div class="box">
-    <p class="tit"><b>09.</b> scroll</p>
-    <div class="con con12"></div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>10.</b> focus</p>
-    <div class="con-1 con13">
-      <input type="text" placeholder="focus">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>11.</b> select</p>
-    <div class="con con13">select가 뭐지?</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>12.</b> bind / unbind</p>
-    <div class="con con14">CLICK</div>
-    <div class="con con14 con15">CLICK을 해도 안 바뀜</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>13.</b> on / off</p>
-    <div class="con con16">CLICK</div>
-    <div class="con con16 con17">CLICK을 해도 안 바뀜</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>13.</b> append / prepend</p>
-    <div class="con con18">append</div>
-    <div class="con con19">prepend</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>14.</b> appendTo / prependTo</p>
-    <div class="con con20">appendTo</div>
-    <div class="con con21">prependTo</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>15.</b> before / after</p>
-    <div class="con con22">before</div>
-    <div class="con con23">after</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>16.</b> remove</p>
-    <div class="con con24">remove</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>17.</b> hide / show</p>
-    <div class="con con25">hide</div>
-    <div class="con con26">show
-      <span class="con26-1">짜잔</span>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>18.</b> fadeIn / fadeOut</p>
-    <div class="con con27">fadeIn
-      <span class="con27-1">짜잔</span>
-    </div>
-    <div class="con con28">fadeOut</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>19.</b> animate</p>
-    <div class="con con29">animate</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>20.</b> css</p>
-    <div class="con con30">css</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>21.</b> toggle</p>
-    <div class="con con31">toggle
-      <span class="con31-1">짜잔</span>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>22.</b> fadeToggle</p>
-    <div class="con con32">fadeToggle
-      <div class="con32-1">짜잔</div>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>23.</b> slideToggle</p>
-    <div class="con con33">slideToggle
-      <div class="con33-1">짜잔</div>
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>24.</b> slideUp / slideDown</p>
-    <div class="con con34">slideUp
-      <div class="con34-1">짜잔</div>
-    </div>
-    <div class="con con35">slideDown
-      <div class="con35-1">짜잔</div>
-    </div>
-  </div>  
-  <div class="box">
-    <p class="tit"><b>25.</b> insertBefore / insertAfter</p>
-    <p class="in-p">짜잔1</p>
-    <div class="con con36">insertBefore</div>
-    <div class="con con37">insertAfter</div>
-    <p class="in-p2">짜잔2</p>
-  </div>
-  <div class="box">
-    <p class="tit"><b>26.</b> delegate / undelegate</p>
-    <div class="con con38">delegate</div>
-    <div class="con con39">undelegate</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>27.</b> focusIn / focusOut</p>
-    <div class="con-1 con40">
-      <input type="text" placeholder="focusIn">
-    </div>
-    <div class="con-1 con41">
-      <input type="text" placeholder="focusOut">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>28.</b> keypress</p>
-    <div class="con-1 con42">
-      <input type="text" placeholder="keypress">
-    </div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>29.</b> offset</p>
-    <div class="con con43">offset</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>30.</b> width / height</p>
-    <div class="con con44">width / height</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>31.</b> innerWidth / innerHeight</p>
-    <div class="con con45">innerWidth / innerHeight</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>32.</b> outerWidth / outerHeight</p>
-    <div class="con con46">outerWidth / outerHeight</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>33.</b> attr</p>
-    <div class="con con47" id="tada">attr</div>
-  </div>
-  <div class="box">
-    <p class="tit"><b>34.</b> scrollTop</p>
-    <div class="con con48">scrollTop</div>
-  </div>
-  
-  <script src="./common/js/jquery-1.12.4.min.js"></script>
+  <script src="common/js/jquery-1.12.4.min.js"></script>
+  <script src="common/js/gsap.min.js"></script>
   <script>
-    $(function(){
-      // 01. mouseenter / mouseleave
-      var i = 0;
-      $(".con1").mouseenter(function(){
-        $(this).css("background", "lavender");
-        $("span",this).text(++i);
-      });
-      $(".con1").mouseleave(function(){
-        $(this).css("background", "lightblue");
-      });
+    $(function() {
+      var isPlaying = false;
+      var cNum = 0;
+      var cMax = $(".banner .banner-inner .img").length-1;
+      var velocity = 0.4;
 
-      // 02. mouseover / mouseout
-      var n = 0;
-      $(".con2").mouseover(function(){
-        $(this).css("background", "lavender");
-        $("span",this).text(++n);
-      });
-      $(".con2").mouseout(function(){
-        $(this).css("background", "lightblue");
-      });
-      // mouseenter / mouseleave : 지정태그 및 자식 요소의 영역까지 포함
-      // mouseover / mouseout : 지정태그의 영역만, 자식 요소의 영역은 제외
+      for(var i = 0; i < cMax+1; i++) {
+        $(".banner .banner-inner .img").eq(i).css("left", i * 100 + "%");
+      }
+      // gsap.set(".banner-inner", {x: 100, y: 100})
+      $(".banner .btn-box a").each(function(q) {
+        $(this).on("click", function() {
+          if(!q) {
+            //left
+            if(!isPlaying) {
+              isPlaying = true;
 
-      // 03. click / dbclick
-      $(".con3").click(function(){
-        $(this).css("border", "5px solid lightsteelblue");
-      });
-      $(".con4").dblclick(function(){
-        $(this).css("border", "5px solid lightslategray");
-      });
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "100%", ease: Cubic.easeOut});
+              cNum--;
+              if(cNum < 0) cNum = cMax;
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: 0, left: "-100%", ease: Cubic.easeOut});
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "0", ease: Cubic.easeOut, onComplete: function() {
+                isPlaying = false;
+              }});
+            }
+          } else {
+            //right
+            if(!isPlaying) {
+              isPlaying = true;
 
-      // 04. mouseup / mousedown / mousemove
-      $(".con5").mouseup(function(){
-        $(this).html("MOUSEUP!");
-      });
-      $(".con6").mousedown(function(){
-        $(this).html("MOUSEDOWN!");
-      });
-      $(".con7").mousemove(function(){
-        var mousePos = "( " + event.pageX + ", " + event.pageY + " )";
-        $("span",this).text( "( X, Y ) : " + mousePos );
-      });
-
-      // 05. keyup / keydown
-      $(".con8").keyup(function(){
-        alert("keyup!");
-      });
-      $(".con9").keydown(function(){
-        alert("keydown!");
-      });
-      // keyup : 키를 누르고 나서 실행
-      // keydown : 키를 누를 때 실행
-
-      // 06. blur
-      $(".con10 input").blur(function(){
-        alert("blur!");
-      });
-      //focus 반대 / 포커스 꺼지면 반응
-
-      // 07. change
-      $(".con11 input").change(function(){
-        alert("change!");
-      });
-      //값 변경되면 동작 실행
-
-      // 08. resize
-      $(window).resize(function(){
-        $("body").css("background","pink");
-        $(".reset").click(function(){
-          $("body").css("background","0");
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "-100%", ease: Cubic.easeOut});
+              cNum++;
+              if(cNum > cMax) cNum = 0;
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: 0, left: "100%", ease: Cubic.easeOut});
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "0", ease: Cubic.easeOut, onComplete: function() {
+                isPlaying = false;
+              }});
+            }
+          }
         });
       });
-
-      // 09. scroll
-      $(window).scroll(function(){
-        $(".con12").text($(this).scrollTop());
-      });
-
-      // 10. focus
-      $(".con13 input").focus(function(){
-        $(this).css("background","lavender");
-      });
-
-      // 12. bind / unbind
-      $(".con14").bind({
-        click: function (){
-          $(this).css("background", "lavender")
-        },
-      });
-      $(".con15").unbind()
-
-      // 13. on / off
-      $(".con16").on('click', function(){
-        $(this).css("background", "lavender")
-      });
-      $(".con17").off()
-
-      // 13. append / prepend
-      $(".con18").click(function(){
-        $(this).append("<span>뒤에 추가!</span>");
-      });
-      $(".con19").click(function(){
-        $(this).prepend("<span>앞에 추가!</span>");
-      });
-
-      // 14. appendTo / prependTo
-      $(".con20").click(function(){
-        $("<span>뒤에 추가!</span>").appendTo(this);
-      });
-      $(".con21").click(function(){
-        $("<span>앞에 추가!</span>").prependTo(this);
-      });
-
-      // 15. before / after
-      $(".con22").click(function(){
-        $(this).before("<span>앞에 추가!</span>");
-      });
-      $(".con23").click(function(){
-        $(this).after("<span>뒤에 추가!</span>");
-      });
-      // append/appendTo : 선택 요소의 "자식요소" 뒤에 삽입
-      // prepend/prependTo : 선택 요소의 "자식요소" 앞에 삽입
-      // before : 선택요소 앞에 삽입
-      // after : 선택요소 뒤에 삽입
-
-      // 16. remove
-      $(".con24").click(function(){
-        $(this).remove();
-      });
-
-      // 17. hide / show
-      $(".con25").click(function(){
-        $(this).hide();
-      });
-      $(".con26").click(function(){
-        $(this).children().show();
-      });
-
-      // 18. fadeIn / fadeOut
-      $(".con27").click(function(){
-        $(this).children().fadeIn();
-      });
-      $(".con28").click(function(){
-        $(this).fadeOut();
-      });
-
-      // 19. animate
-      $(".con29").click(function(){
-        $(this).animate({
-          width: '100%'
-        }, 800);
-      });
-
-      // 20. css
-      $(".con30").click(function(){
-        $(this).css({"background":"lavender", "color":"darkmagenta"});
-      });
-
-      // 21. toggle
-      $(".con31").click(function(){
-        $(this).children().toggle();
-      });
-
-      // 22. fadeToggle
-      $(".con32").click(function(){
-        $(this).children().fadeToggle();
-      });
-
-      // 23. slideToggle
-      $(".con33").click(function(){
-        $(this).children().slideToggle();
-      });
-
-      // 24. slideUp / slideDown
-      $(".con34").click(function(){
-        $(this).children().slideUp();
-      });
-      $(".con35").click(function(){
-        $(this).children().slideDown();
-      });
-
-      // 25. insertBefore / insertAfter
-      $(".con36").click(function(){
-        $(this).insertBefore(".in-p");
-      });
-      $(".con37").click(function(){
-        $(this).insertAfter(".in-p2");
-      });
-
-      // 26. delegate / undelegate
-      $("body").delegate(".con38","click",function(){
-        $(".con38").css("background","red");
-      });
-      $(".con39").undelegate()
-      // delegate : 특정 영역 내의 요소에 대한 이벤트 등록
-      // $(elements).on(events, selector, data, handler);
-      // $(elements).delegate(selector, events, data, handler);
-
-      // 27. focusIn / focusOut
-      $(".con40 input").focusin(function(){
-        $(this).css("background","red");
-      });
-      $(".con41 input").focusout(function(){
-        $(this).css("background","red");
-      });
-
-      // 28. keypress
-      $(".con42").keypress(function(){
-        alert("keypress!");
-      });
-
-      // 29. offset
-      $(".con43").click(function(){
-        var conOff = $(this).offset();
-        console.log(conOff);
-        $(this).after("top: " + conOff.top + "px / left: " + conOff.left + "px");
-      });
-
-      // 30. width / height
-      $(".con44").click(function(){
-        var conwh = $(this).width();
-        var conhe = $(this).height();
-        $(this).after("width: " + conwh + "px / height: " + conhe + "px");
-      });
-
-      // 31. innerWidth / innerHeight
-      $(".con45").click(function(){
-        var conIwh = $(this).innerWidth();
-        var conIhe = $(this).innerHeight();
-        $(this).after("innerWidth: " + conIwh + "px / innerHeight: " + conIhe + "px");
-      });
-      // 보더 값 제외한 크기
-
-      // 32. outerWidth / outerHeight
-      $(".con46").click(function(){
-        var conOwh = $(this).outerWidth();
-        var conOhe = $(this).outerHeight();
-        $(this).after("outerWidth: " + conOwh + "px / outerHeight: " + conOhe + "px");
-      });
-      // 보더 값 포함한 크기
-
-      // 33. attr
-      $(".con47").click(function(){
-        var getId = $(this).attr("id");
-        $(this).after("id : " + getId);
-      });
-
-      // 34. scrollTop
-      $(".con48").click(function(){
-        $("html, body").animate({
-          scrollTop : 0
-        }, 800)
-      });
-    })
-      
+    });
   </script>
 </body>
 </html>
