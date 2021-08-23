@@ -16,6 +16,9 @@
     .banner .btn-box {position: absolute; top: 50%; left: 0; width: var(--width);}
     .banner .btn-box a {position: absolute; top: 0; font-size: 40px; text-decoration: none; color: pink; z-index: 2;}
     .banner .btn-box a:nth-child(2) {right: 0;}
+    .banner .bullets {position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1;}
+    .banner .bullets .bullet {display: inline-block; margin: 0 4px; width: 15px; height: 15px; border-radius: 50%; background-color: #fff;}
+    .banner .bullets .bullet.active {background-color: blueviolet;}
   </style>
   <!-- 
     Mission
@@ -42,6 +45,9 @@
       <div class="img"><span>2</span><img src="common/image/img-star-avenue-k-wave2.jpg" alt=""></div>
       <div class="img"><span>3</span><img src="common/image/img-star-avenue-k-wave3.jpg" alt=""></div>
     </div>
+    <div class="bullets">
+      
+    </div>
     <div class="btn-box">
       <a class="btn-left" href="javascript:">◀</a>
       <a class="btn-right" href="javascript:">▶</a>
@@ -58,7 +64,9 @@
 
       for(var i = 0; i < cMax+1; i++) {
         $(".banner .banner-inner .img").eq(i).css("left", i * 100 + "%");
+        $(".bullets").append("<a href='javascript:' class='bullet'></a>");
       }
+      $(".bullets").find(".bullet").eq(0).addClass("active");
       // gsap.set(".banner-inner", {x: 100, y: 100})
       $(".banner .btn-box a").each(function(q) {
         $(this).on("click", function() {
@@ -74,6 +82,8 @@
               gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "0", ease: Cubic.easeOut, onComplete: function() {
                 isPlaying = false;
               }});
+              $(".bullets").find(".bullet").removeClass("active");
+              $(".bullets").find(".bullet").eq(cNum).addClass("active");
             }
           } else {
             //right
@@ -87,10 +97,30 @@
               gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "0", ease: Cubic.easeOut, onComplete: function() {
                 isPlaying = false;
               }});
+              $(".bullets").find(".bullet").removeClass("active");
+              $(".bullets").find(".bullet").eq(cNum).addClass("active");
             }
           }
         });
       });
+
+      $(".banner .bullets .bullet").each(function(q) {
+        $(this).on("click", function() {
+          if(!isPlaying) {
+            isPlaying = true;
+            if(q != cNum) {
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "-100%", ease: Cubic.easeOut});
+              $(".bullets").find(".bullet").removeClass("active");
+              cNum = q;
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: 0, left: "100%", ease: Cubic.easeOut});
+              gsap.to($(".banner .banner-inner .img").eq(cNum), {duration: velocity, left: "0", ease: Cubic.easeOut, onComplete: function() {
+                isPlaying = false;
+              }});
+              $(".bullets").find(".bullet").eq(cNum).addClass("active");
+            }
+          }
+        });
+      })
     });
   </script>
 </body>
